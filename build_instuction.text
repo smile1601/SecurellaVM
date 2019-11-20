@@ -67,22 +67,31 @@
 
 В корневом каталоге с исходниками VirtualBox создаем LocalConfig.kmk и пишем в него следующее:
 
-VBOX_PATH_APP_PRIVATE_ARCH := /usr/lib/virtualbox //Личный каталог приложения зависящий от архитектуры
-VBOX_PATH_SHARED_LIBS := $(VBOX_PATH_APP_PRIVATE_ARCH) //Путь для расположения каких то библиотек
-VBOX_WITH_ORIGIN := //Отключаем стандартный RUNPATH что бы использовать фиксированный
-VBOX_WITH_RUNPATH := $(VBOX_PATH_APP_PRIVATE_ARCH) //Устанавливаем RUNPATH в каталог, где находятся наши общие библиотеки
-VBOX_PATH_APP_PRIVATE := /usr/share/virtualbox //Личный каталог приложения не зависящий от архитектуры
-VBOX_PATH_APP_DOCS := /usr/share/doc/virtualbox //Каталог содержащий документацию VirtualBox
-VBOX_WITH_TESTCASES :=	//Для экономии времени компиляции, отключает какое то тестирование
-VBOX_WITH_TESTSUITE :=	//Для экономии времени компиляции, отключает какое то тестирование
+#Личный каталог приложения зависящий от архитектуры
+VBOX_PATH_APP_PRIVATE_ARCH := /usr/lib/virtualbox
+#Путь для расположения каких то библиотек
+VBOX_PATH_SHARED_LIBS := $(VBOX_PATH_APP_PRIVATE_ARCH)
+#Отключаем стандартный RUNPATH что бы использовать фиксированный
+VBOX_WITH_ORIGIN :=
+#Устанавливаем RUNPATH в каталог, где находятся наши общие библиотеки
+VBOX_WITH_RUNPATH := $(VBOX_PATH_APP_PRIVATE_ARCH)
+#Личный каталог приложения не зависящий от архитектуры
+VBOX_PATH_APP_PRIVATE := /usr/share/virtualbox
+#Каталог содержащий документацию VirtualBox
+VBOX_PATH_APP_DOCS := /usr/share/doc/virtualbox
+#Для экономии времени компиляции, отключает какое то тестирование
+VBOX_WITH_TESTCASES :=
+#Для экономии времени компиляции, отключает какое то тестирование
+VBOX_WITH_TESTSUITE :=
 
 Сборка и установка модуля ядра VirtualBox:
 
 	cd out/linux.amd64/release/bin/src
 	make
 	make install
+	modprobe vboxdrv
 
 Запуск VirtualBox:
 	
-	cd out/linux.amd64/release/bin
+	cd..
 	./VirtualBox
