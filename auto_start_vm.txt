@@ -31,8 +31,7 @@ mkdir /vm_image
 chmod +r /auto_run
 chmod +r /vm_image
 
-#В нее кладем bash скрипт startvm.sh (лежит в гит репозитории) и делаем его исполняемым
-
+#В /auto_run кладем bash скрипт startvm.sh (лежит в гит репозитории) и делаем его исполняемым
 #(Я передавал файлы чрез ftp, для этого необходимо устрановить vsftpd залесть в его конфиги /etc/vsftpd.conf и раскоментировать строку write_enable=YES и перезапустить service vsftpd restart)
 
 chmod +x startvm.sh
