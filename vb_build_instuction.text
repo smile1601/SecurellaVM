@@ -1,0 +1,97 @@
+Компиляция VirtualBox в Ubuntu 18.04.3 LTS
+
+Примечание: // - коментарии
+
+Устанавливаем следующие пакеты:
+
+	1)apt-get install iasl //intell ACPI compiler
+	2)apt-get install wine-stable //Open Watcom многоплатформенный компилятор
+	3)apt-get install xsltproc
+	4)apt-get install libxml2
+	5)apt-get install libxml2-dev //(В случае ошибки - neither pkg-config nor xml2-config found)
+	5)apt-get install libidl-dev //(В случае ошибки - libIDL-config (variable libIDL-config) not found!)
+	6)apt-get install libssl-dev
+	  apt-get install libcurl4-openssl-dev //(В случае ошибки  libcrypto not found at  -lssl -lcrypto or openssl headers not found)
+
+	7)apt-get install libvpx-dev //(В случае ошибки - vpx not found at -lvpx  or vpx headers not found)
+	8)apt-get install libopus-dev //(В случае ошибки - opus not found at   or opus headers not found)
+	9)apt-get install libpng-dev
+	10)apt-get install libsdl-dev
+	11)apt-get install libxcursor-dev
+	12)apt-get install libxinerama-dev
+	13)apt-get install libxrandr-dev
+	14)apt-get install libxmu-dev
+	15)apt install qt5-default
+	16)apt-get install libdevmapper-dev
+	17)apt-get install libcap-dev
+	18)apt-get install g++-multilib //(В случае ошибки - Cannot compile 32-bit applications (missing headers and/or libraries)!)
+	19)apt-get install makeself
+	20)apt-get install puthon-dev
+	---------------------------------------------------------- 
+	Установка данных пакетов отделенна от остальных только по тому что ошибки для решения которых их было необходимо установить возникали во время вызова kmk
+
+	21)apt-get install kbuild //kmk необходим для компиляции ядра
+	22)apt-get install libpam0g-dev //При компиляции ядра у меня возникала ошибя отсутствует заголовочный файл pam_modules.h , данный файл является частью библиотеки libpam так что устанавливае ее тоже
+	23)apt-get install libqt5* //(В случае ошибки - No rule to make target '/usr/lib/x86_64-linux-gnu/libQt5X11Extras.so', needed by '/home/m/VirtualBox-5.2.12/out/linux.amd64/release/obj/VirtualBox/VirtualBox'...)
+	24)apt-get install default-jdk //(В случае ошики - jni.h не найден)
+	25)apt-get install -y ruby-posix-spawn
+	26)apt-get install texlive-latex-base
+	27)apt-get install yasm
+	28)apt-get install qttools5-dev-tools
+	29)apt-get install texlive-latex-extra texlive-latex-recommended
+	30)apt-get install texlive-fonts-extra texlive-fonts-recommended
+
+
+Что то связанное с тем что сборка на 64 разрядной машине требует 32 битные библиотеки
+Выполняем следующие команды:
+
+	ln -s libX11.so.6    /usr/lib32/libX11.so 
+	ln -s libXTrap.so.6  /usr/lib32/libXTrap.so 
+	ln -s libXt.so.6     /usr/lib32/libXt.so 
+	ln -s libXtst.so.6   /usr/lib32/libXtst.so
+	ln -s libXmu.so.6    /usr/lib32/libXmu.so
+	ln -s libXext.so.6   /usr/lib32/libXext.so
+
+В корневом каталоге с исходниками VirtualBox выполняем скрипт настройки. Создаст файл AutoConfig.kmk содержащий пути к различным инструментам в вашей системе. Кроме того, он создаст сценарий установки среды с именем env.sh
+Выполняем команду:
+
+	./configure --disable-hardening 
+
+Запускаем сценарий установки среды:
+
+	source ./env.sh
+
+Эта команда создаст необходимые двоичные файлы в out / linux.x86 / release / bin /
+
+	kmk all
+
+В корневом каталоге с исходниками VirtualBox создаем LocalConfig.kmk и пишем в него следующее:
+
+#Личный каталог приложения зависящий от архитектуры
+VBOX_PATH_APP_PRIVATE_ARCH := /usr/lib/virtualbox
+#Путь для расположения каких то библиотек
+VBOX_PATH_SHARED_LIBS := $(VBOX_PATH_APP_PRIVATE_ARCH)
+#Отключаем стандартный RUNPATH что бы использовать фиксированный
+VBOX_WITH_ORIGIN :=
+#Устанавливаем RUNPATH в каталог, где находятся наши общие библиотеки
+VBOX_WITH_RUNPATH := $(VBOX_PATH_APP_PRIVATE_ARCH)
+#Личный каталог приложения не зависящий от архитектуры
+VBOX_PATH_APP_PRIVATE := /usr/share/virtualbox
+#Каталог содержащий документацию VirtualBox
+VBOX_PATH_APP_DOCS := /usr/share/doc/virtualbox
+#Для экономии времени компиляции, отключает какое то тестирование
+VBOX_WITH_TESTCASES :=
+#Для экономии времени компиляции, отключает какое то тестирование
+VBOX_WITH_TESTSUITE :=
+
+Сборка и установка модуля ядра VirtualBox:
+
+	cd out/linux.amd64/release/bin/src
+	make
+	make install
+	modprobe vboxdrv
+
+Запуск VirtualBox:
+	
+	cd..
+	./VirtualBox
