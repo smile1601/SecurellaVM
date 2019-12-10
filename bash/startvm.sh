@@ -20,7 +20,8 @@ then
 		vb_status=$(pgrep -c VirtualBox)
 		if [ $vb_status -ne 1 ]
 		then
-			reboot
+			#reboot
+			poweroff
 		fi
 		sleep $R_DELAY
 	done
