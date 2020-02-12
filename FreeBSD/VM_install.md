@@ -45,7 +45,7 @@
   ![Step 11](https://i.ibb.co/bNZZyk4/011.jpg)
   18. Выбрать Временную зону **MSK+01 - Samara** и нажать **Enter** на **OK**
   ![Step 12](https://i.ibb.co/zR4kkFB/012.jpg)
-  19. Нажать **Enter** на **Skip**
+  19. Пропустить настройку времени, нажав **Enter** на **Skip**
   ![Step 13](https://i.ibb.co/pzrydQj/013.jpg)
   20. Выбрать разделы и нажать **Enter** на **OK**
   ![Step 14](https://i.ibb.co/XVmy13j/014.jpg)
