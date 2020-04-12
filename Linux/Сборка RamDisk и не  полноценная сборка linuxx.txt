@@ -1,0 +1,145 @@
+Для сборки нам понадобится:
+
+) apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev isolinux genisoimage
+
+Для конфигурации:
+
+) mkdir /linuxkernel
+
+) cd /linuxkernel
+
+) wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.6.2.tar.xz
+
+) tar -xvf linux-5.6.2.tar.xz
+
+) rm -r linux-5.6.2.tar.xz
+
+) chmod -r 777 /linuxkernel
+
+) cp -r /linuxkernel/linux-5.6.2/* /linuxkernel/
+
+) rm -r linux-5.6.2
+
+) make nconfig
+
+В следующих полях ставим * :
+
+File Systems ---> CD-ROM/DVD Filesystems ---> ISO 9660 CDROM file system support
+File systems ---> DOS/FAT/NT Filesystems ---> NTFS write support
+
+Для сборки:
+
+) make -j3 bzImage
+
+j3 -количество потоков
+
+После сборки образ лежит по адресу: arch/x86_64/boot/bzImage
+
+Создание Ramdisk:
+
+) dd if=/dev/zero of=/dev/ram0 bs=1k count=5000 - Создаем Ramdisk в оперативной памяти нашего компьютера.
+
+) mke2fs -m0 /dev/ram0 5000 - Форматируем Ramdisk в системе Ext2
+
+) mkdir /distro - Создаем папку
+
+) mount /dev/ram0 /distro - Монтируем в папку /distro
+
+Качаем и распаковываем busybox
+
+) mkdir /busybox
+
+) chmod 777 /busybox
+
+) cd /busybox
+
+) wget https://busybox.net/downloads/busybox-1.31.1.tar.bz2
+
+) tar -xvf busybox-1.31.1.tar.bz2
+
+) rm -r busybox-1.31.1.tar.bz2
+
+) cp -r /busybox/busybox-1.31.1/* /busybox/
+
+) rm -r /busybox-1.31.1
+
+) make defconfig
+
+) make CONFIG_PREFIX=/distro install
+
+) cd /distro
+
+) mkdir etc
+
+) mkdir lib
+
+) mkdir dev
+
+) mkdir mnt
+
+) mkdir proc
+
+) mkdir root
+
+) mkdir tmp
+
+)nano etc/inittab
+
+Вписываем:
+
+::sysinit:/etc/rc.d/rc.S
+
+# Запустить оболочку в консоли.
+::respawn:-/bin/sh
+
+# Перезагрузка по нажатии на Ctrl+Alt+Del.
+::ctrlaltdel:/sbin/reboot
+
+# Команды, выполняемые перед выключением и перезагрузкой.
+::shutdown:/sbin/swapoff -a >/dev/null 2>&1
+::shutdown:/bin/umount -a -r >/dev/null 2>&1
+
+) nano etc/fstab
+
+Вписываем:
+
+none /proc proc defaults 0 0
+
+) nano etc/mtab
+
+) nano etc/rc.d/rc.S
+
+Вписываем:
+
+#!/bin/ash
+
+/bin/mount -av -t nonfs
+
+) nano etc/profile 
+
+Вписываем:
+
+PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:"
+LESS=-MM
+TERM=linux
+HOME=/root
+PS1='> '
+PS2='> '
+ignoreeof=10
+export PATH DISPLAY LESS TERM PS1 PS2 HOME ignoreeof
+
+) nano etc/shell
+
+Вписываем:
+
+/bin/sh
+/bin/ash
+/bin/bash
+
+) mkdir /os - папка для "готового".
+
+) umount /dev/ram0 - размонтируем кусочек оперативной памяти.
+
+) dd if=/dev/ram0 of=/os/initrd bs=1k count=5000 - создаем файл.
+
+) gzip /os/initrd - сжимаем файл initrd
