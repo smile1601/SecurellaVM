@@ -19,62 +19,80 @@
   2. Выбрать скачанный файл. Нажать кнопку **Продолжить**
   
   ![Step 1](https://i.ibb.co/YdDp0fX/001.jpg)
+  
   3. Выбрать **Boot Multi User** (раздел 1) и нажать **Enter**
   
   ![Step 2](https://i.ibb.co/gSsfp36/002.jpg)
+  
   4. Нажать **Enter** на кнопке **Install**
   
   ![Step 3](https://i.ibb.co/9N5N3Pd/003.jpg)
+  
   5. Оставить выбранным раздел **Continue with default keymap** и нажать **Enter** на кнопке **Select**
   6. Ввести **HostName** (**TheOol** ?)
   7. Выбрать компоненты кнопкой **Пробел** и нажать **Enter**
   
   ![Step 4](https://i.ibb.co/M6fgxjd/004.jpg) 
+  
   8. Выбрать раздел **Auto (ZFS)** стрелками вверх/вниз и нажать **Enter** на **OK**
   
   ![Step 5](https://i.ibb.co/VjRjQ3f/005.jpg)
+  
   9. Оставить выбранным по умолчанию раздел **Install** и нажать **Enter** на **Select**
   
   ![Step 6](https://i.ibb.co/6gy38vT/006.jpg)
+  
   10. Оставить выбранным по умолчанию раздел **Stripe** и нажать **Enter** на **OK**
   
   ![Step 7](https://i.ibb.co/CKKj8Wr/007.jpg)
+  
   11. Нажать **Пробел**, отметив ada0 и нажать **Enter** на **OK**
   
   ![Step 8](https://i.ibb.co/vBB3nn0/008.jpg)
+  
   12. Стрелками перевести выбеление на кнопку **Yes** для начала установки и нажать **Enter** 
   
   ![Step 9](https://i.ibb.co/mCLhvLX/009.jpg)
+  
   13. Дождаться окончания успановки
   14. Задать и подтвердить пароль **Root**
   15. Автоматически настроить сетефой интерфейс **Enter** на **Cancel**
   16. Выбрать регион **Europe** и нажать **Enter** на **OK**
   
   ![Step 10](https://i.ibb.co/RCqY6dz/010.jpg)
+  
   17. Выбрать страну **Rrussian Federation** и нажать **Enter** на **OK**
   
   ![Step 11](https://i.ibb.co/bNZZyk4/011.jpg)
+  
   18. Выбрать Временную зону **MSK+01 - Samara** и нажать **Enter** на **OK**
   
   ![Step 12](https://i.ibb.co/zR4kkFB/012.jpg)
+  
   19. Пропустить настройку времени, нажав **Enter** на **Skip**
   
   ![Step 13](https://i.ibb.co/pzrydQj/013.jpg)
+  
   20. Выбрать разделы и нажать **Enter** на **OK**
   
   ![Step 14](https://i.ibb.co/XVmy13j/014.jpg)
+  
   21. Не выбирать ничего. Нажать **Enter** на **OK**
   
   ![Step 15](https://i.ibb.co/NSMqRWh/015.jpg)
+  
   22. Будет тредложено создать пользователей. При необходимости - создать по шаблону.
   
   ![Step 16](https://i.ibb.co/MpJbzdw/016.jpg)
+  
   23. Закончить установку нажав **Enter** на **OK**. При необходимости - донастроить.
   
   ![Step 17](https://i.ibb.co/LzSJ0wm/017.jpg)
+  
   24. Закончить установку нажав **Enter** на **NO**.
   
   ![Step 18](https://i.ibb.co/k3jJjP6/018.jpg)
+  
   25. Выключить виртуальную машину. Не сохранять состояние.
   26. Извлечь образ из привода виртуальной машины.
   
