@@ -1,4 +1,4 @@
-#Установка FreeBSD на Virtual Box
+# Установка FreeBSD на Virtual Box
 
 ##Загрузка
   1. Зайти на страницу <a href="https://www.freebsd.org/where.html">Download FreeBSD</a>
