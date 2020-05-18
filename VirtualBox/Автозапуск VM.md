@@ -50,6 +50,7 @@ reboot
     nano startvm.sh
     
 Вписываем:
+____
 
     \#! /bin/bash
     VM_1_NAME=vm_1
@@ -79,7 +80,7 @@ reboot
             sleep $R_DELAY
         done
     fi
-    
+----
 Делаем файл исполняемым:
 
     chmod +x startvm.sh

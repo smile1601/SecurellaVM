@@ -3,38 +3,37 @@
 Устанавливаем следующие пакеты:
 
     apt-get install iasl
-	apt-get install wine-stable
-	apt-get install xsltproc
-	apt-get install libxml2
-	apt-get install libxml2-dev
-	apt-get install libidl-dev
+    apt-get install wine-stable
+    apt-get install xsltproc
+    apt-get install libxml2
+    apt-get install libxml2-dev
+    apt-get install libidl-dev
     apt-get install libssl-dev
     apt-get install libcurl4-openssl-dev
-
-	apt-get install libvpx-dev
-	apt-get install libopus-dev
-	apt-get install libpng-dev
-	apt-get install libsdl-dev
-	apt-get install libxcursor-dev
-	apt-get install libxinerama-dev
-	apt-get install libxrandr-dev
-	apt-get install libxmu-dev
-	apt install qt5-default
-	apt-get install libdevmapper-dev
-	apt-get install libcap-dev
-	apt-get install g++-multilib
-	apt-get install makeself
-	apt-get install puthon-dev
-	apt-get install kbuild
-	apt-get install libpam0g-dev
-	apt-get install libqt5*
-	apt-get install default-jdk
-	apt-get install -y ruby-posix-spawn
-	apt-get install texlive-latex-base
-	apt-get install yasm
-	apt-get install qttools5-dev-tools
-	apt-get install texlive-latex-extra texlive-latex-recommended
-	apt-get install texlive-fonts-extra texlive-fonts-recommended
+    apt-get install libvpx-dev
+    apt-get install libopus-dev
+    apt-get install libpng-dev
+    apt-get install libsdl-dev
+    apt-get install libxcursor-dev
+    apt-get install libxinerama-dev
+    apt-get install libxrandr-dev
+    apt-get install libxmu-dev
+    apt install qt5-default
+    apt-get install libdevmapper-dev
+    apt-get install libcap-dev
+    apt-get install g++-multilib
+    apt-get install makeself
+    apt-get install puthon-dev
+    apt-get install kbuild
+    apt-get install libpam0g-dev
+    apt-get install libqt5*
+    apt-get install default-jdk
+    apt-get install -y ruby-posix-spawn
+    apt-get install texlive-latex-base
+    apt-get install yasm
+    apt-get install qttools5-dev-tools
+    apt-get install texlive-latex-extra texlive-latex-recommended
+    apt-get install texlive-fonts-extra texlive-fonts-recommended
 
 (На 64 разрядной машине требует 32 битные библиотеки)
 
