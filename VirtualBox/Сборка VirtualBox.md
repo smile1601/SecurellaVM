@@ -2,7 +2,7 @@
 
 Устанавливаем следующие пакеты:
 
-    apt-get install iasl
+    `apt-get install iasl
 	apt-get install wine-stable
 	apt-get install xsltproc
 	apt-get install libxml2
@@ -34,7 +34,7 @@
 	apt-get install yasm
 	apt-get install qttools5-dev-tools
 	apt-get install texlive-latex-extra texlive-latex-recommended
-	apt-get install texlive-fonts-extra texlive-fonts-recommended
+	apt-get install texlive-fonts-extra texlive-fonts-recommended`
 
 (На 64 разрядной машине требует 32 битные библиотеки)
 
