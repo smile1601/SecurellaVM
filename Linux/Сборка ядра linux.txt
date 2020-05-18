@@ -1,7 +1,0 @@
-Качаем и разархивируем исходники:
-https://www.kernel.org/
-apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev
-apt install isolinux genisoimage
-В папке с исходниками вводим:
-make nconfig - Настраиваем конфиги образа
-make -j8 isoimage - собираем сразу в iso
